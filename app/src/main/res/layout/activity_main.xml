@@ -32,8 +32,9 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:backgroundTint="@color/black"
         android:id="@+id/firstBtnId"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:text="All Books"
@@ -43,19 +44,22 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:backgroundTint="@color/black"
         android:id="@+id/secondBtnId"
-        android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_width="200dp"
         android:layout_marginTop="30dp"
         android:text="Currently Reading"
         app:layout_constraintEnd_toEndOf="@+id/firstBtnId"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/firstBtnId"
-        app:layout_constraintTop_toBottomOf="@+id/firstBtnId" />
+        app:layout_constraintTop_toBottomOf="@+id/firstBtnId"
+         />
 
     <Button
+        android:backgroundTint="@color/black"
         android:id="@+id/thirdBtnId"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Already Read"
@@ -64,8 +68,9 @@
         app:layout_constraintTop_toBottomOf="@+id/secondBtnId" />
 
     <Button
+        android:backgroundTint="@color/black"
         android:id="@+id/fourthBtnId"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Favourites"
