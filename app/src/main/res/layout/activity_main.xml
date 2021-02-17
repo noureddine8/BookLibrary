@@ -4,15 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#F6F5F5">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/icon_book"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/titleId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="54dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text=" The Lib"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/firstBtnId"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="All Books"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/secondBtnId"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Currently Reading"
+        app:layout_constraintEnd_toEndOf="@+id/firstBtnId"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/firstBtnId"
+        app:layout_constraintTop_toBottomOf="@+id/firstBtnId" />
+
+    <Button
+        android:id="@+id/thirdBtnId"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Already Read"
+        app:layout_constraintEnd_toEndOf="@+id/secondBtnId"
+        app:layout_constraintStart_toStartOf="@+id/secondBtnId"
+        app:layout_constraintTop_toBottomOf="@+id/secondBtnId" />
+
+    <Button
+        android:id="@+id/fourthBtnId"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Favourites"
+        app:layout_constraintEnd_toEndOf="@+id/thirdBtnId"
+        app:layout_constraintStart_toStartOf="@+id/thirdBtnId"
+        app:layout_constraintTop_toBottomOf="@+id/thirdBtnId" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Developped By Ensias Student"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
