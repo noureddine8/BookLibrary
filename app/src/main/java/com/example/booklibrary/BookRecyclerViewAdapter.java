@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 
@@ -36,10 +38,22 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView.setText(books.get(position).getTitle());
+        holder.authorText.setText(books.get(position).getAuthor());
+        holder.descText.setText(books.get(position).getShortDesc());
         Glide.with(context)
                 .asBitmap()
                 .load(books.get(position).getImageUrl())
                 .into(holder.imageView);
+        if(books.get(position).isExpanded()){
+            TransitionManager.beginDelayedTransition(holder.cardView);
+            holder.expandedLayout.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.GONE);
+        }
+        else {
+            TransitionManager.beginDelayedTransition(holder.cardView);
+            holder.expandedLayout.setVisibility(View.GONE);
+            holder.downArrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -55,13 +69,39 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private ImageView imageView;
-        private TextView textView;
+        private TextView textView,authorText,descText;
+        private ImageView upArrow,downArrow;
+        private RelativeLayout mainLayout,expandedLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardId);
             imageView = itemView.findViewById(R.id.cardImgId);
             textView = itemView.findViewById(R.id.cardTitleId);
+
+            upArrow = itemView.findViewById(R.id.btnUpId);
+            downArrow = itemView.findViewById(R.id.btnDownId);
+            expandedLayout = itemView.findViewById(R.id.expandedCardId);
+            authorText = itemView.findViewById(R.id.authorId);
+            descText = itemView.findViewById(R.id.descId);
+
+            downArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition() );
+                }
+            });
+
+            upArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition() );
+                }
+            });
 
         }
     }
