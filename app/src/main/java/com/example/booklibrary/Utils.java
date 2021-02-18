@@ -71,6 +71,7 @@ public class Utils {
     public static ArrayList<Book> getFavourites() {
         return favourites;
     }
+
     public Book getBookById(int id){
         for(Book b:allBooks){
             if(b.getId()==id){
@@ -80,4 +81,9 @@ public class Utils {
         return null;
 
     }
+
+    public boolean addToCurrentlyReading(Book book){
+        return currentlyReading.add(book);
+    }
+
 }
