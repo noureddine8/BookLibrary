@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerViewAdapter.ViewHolder> {
+    public static final String BOOK_ID_KEY ="bookId";
 
     List<Book> books = new ArrayList<>();
     private Context context;
@@ -60,6 +61,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,BookActivity.class);
+                intent.putExtra(BOOK_ID_KEY,books.get(position).getId());
                 context.startActivity(intent);
             }
         });
