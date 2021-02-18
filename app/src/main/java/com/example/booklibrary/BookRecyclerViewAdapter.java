@@ -1,6 +1,7 @@
 package com.example.booklibrary;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,14 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             holder.expandedLayout.setVisibility(View.GONE);
             holder.downArrow.setVisibility(View.VISIBLE);
         }
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,BookActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
