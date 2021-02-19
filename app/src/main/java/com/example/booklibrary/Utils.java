@@ -82,8 +82,8 @@ public class Utils {
 
     }
 
-    public boolean addToCurrentlyReading(Book book){
-        return currentlyReading.add(book);
+    public boolean addToSection(ArrayList<Book> section,Book book){
+        return section.add(book);
     }
 
 }

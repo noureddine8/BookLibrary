@@ -40,7 +40,9 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true">
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        >
 
                         <Button
                             android:id="@+id/currentlyReadingId"
@@ -49,19 +51,13 @@
                             android:layout_marginTop="30dp"
                             android:text="Currently reading" />
 
-                        <Button
-                            android:id="@+id/wantToReadId"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/currentlyReadingId"
-                            android:layout_marginTop="15dp"
-                            android:text="Want to read" />
+
 
                         <Button
                             android:id="@+id/alredayReadId"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/wantToReadId"
+                            android:layout_below="@id/currentlyReadingId"
                             android:layout_marginTop="15dp"
                             android:text="Already read" />
 

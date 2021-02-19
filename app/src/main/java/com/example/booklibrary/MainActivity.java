@@ -29,6 +29,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        alreadyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,AlreadyRead.class);
+                startActivity(intent);
+            }
+        });
+        favouriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,Favourites.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews() {

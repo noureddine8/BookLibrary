@@ -2,6 +2,7 @@ package com.example.booklibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import static com.example.booklibrary.BookRecyclerViewAdapter.BOOK_ID_KEY;
 
 public class BookActivity extends AppCompatActivity {
-    private Button currentlyBtn, wantToReadBtn, alreadyReadBtn, favouritesBtn;
+    private Button currentlyBtn, alreadyReadBtn, favouritesBtn;
     private TextView titleTxt, authorTxt, pagesTxt, longDescTxt;
     private ImageView imageView;
     Intent intent;
@@ -34,14 +35,16 @@ public class BookActivity extends AppCompatActivity {
             Book incomingBook = Utils.getInstance().getBookById(bookId);
             if (incomingBook != null) {
                 setData(incomingBook);
-                handleCurrentlyReading(incomingBook);
+                handleCurrentlyReading(incomingBook,Utils.getCurrentlyReading(),currentlyBtn,"currently reading section",CurrentlyReading.class);
+                handleCurrentlyReading(incomingBook,Utils.getAlreadyRead(),alreadyReadBtn,"already read section",AlreadyRead.class);
+                handleCurrentlyReading(incomingBook,Utils.getFavourites(),favouritesBtn,"favourites section",Favourites.class);
             }
         }
 
     }
 
-    private void handleCurrentlyReading(Book incomingBook) {
-        ArrayList<Book> currentlyReading = Utils.getInstance().getCurrentlyReading();
+    private void handleCurrentlyReading(Book incomingBook, ArrayList<Book> list, Button btn, String str, Object activity) {
+        ArrayList<Book> currentlyReading = list;
         boolean existInCurrently = false;
         for(Book b:currentlyReading) {
             if (b.getId() == incomingBook.getId()) {
@@ -49,15 +52,15 @@ public class BookActivity extends AppCompatActivity {
             }
         }
             if(existInCurrently){
-                currentlyBtn.setEnabled(false);
+                btn.setEnabled(false);
             }
             else{
-                currentlyBtn.setOnClickListener(new View.OnClickListener() {
+                btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance().addToCurrentlyReading(incomingBook)){
-                            Toast.makeText(BookActivity.this, "Book added to currently Reading", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(BookActivity.this,CurrentlyReading.class);
+                        if(Utils.getInstance().addToSection(list,incomingBook)){
+                            Toast.makeText(BookActivity.this, "Book added successfully to "+str, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(BookActivity.this, (Class<?>) activity);
                             startActivity(intent);
                         }
                         else {
@@ -81,7 +84,6 @@ public class BookActivity extends AppCompatActivity {
     private void intitViews() {
         //Buttons
         currentlyBtn = findViewById(R.id.currentlyReadingId);
-        wantToReadBtn = findViewById(R.id.wantToReadId);
         alreadyReadBtn = findViewById(R.id.alredayReadId);
         favouritesBtn = findViewById(R.id.favouriteId);
 
