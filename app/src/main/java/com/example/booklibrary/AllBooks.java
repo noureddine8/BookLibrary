@@ -18,6 +18,7 @@ public class AllBooks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
+
         booksRecyclerView = findViewById(R.id.booksRecyclerId);
 
         adapter = new BookRecyclerViewAdapter(this);
@@ -26,4 +27,5 @@ public class AllBooks extends AppCompatActivity {
         booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
+
 }
