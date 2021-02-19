@@ -1,6 +1,8 @@
 package com.example.booklibrary;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,33 +60,84 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance().removeFromSection(Utils.getAlreadyRead(),books.get(position))){
-                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
-                        }
+
+                        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setMessage("Are you sure you want to remove the book from your Already Read?");
+                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if(Utils.getInstance().removeFromSection(Utils.getAlreadyRead(),books.get(position))){
+                                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                                            notifyDataSetChanged();
+                                        }
+                                    }
+                                });
+                                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                builder.create().show();
+                            }
+                        });
+
                     }
                 });
             }
 
             else if(context.getClass().getName().equals("com.example.booklibrary.CurrentlyReading")){
+
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance().removeFromSection(Utils.getCurrentlyReading(),books.get(position))){
-                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
-                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("Are you sure you want to remove the book from your Currently Reading?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(Utils.getInstance().removeFromSection(Utils.getCurrentlyReading(),books.get(position))){
+                                    Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
                     }
                 });
+
             }
             else if(context.getClass().getName().equals("com.example.booklibrary.Favourites")){
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance().removeFromSection(Utils.getFavourites(),books.get(position))){
-                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
-                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("Are you sure you want to remove the book from your favourites?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(Utils.getInstance().removeFromSection(Utils.getFavourites(),books.get(position))){
+                                    Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
                     }
                 });
             }
