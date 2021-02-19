@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -50,11 +51,51 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             TransitionManager.beginDelayedTransition(holder.cardView);
             holder.expandedLayout.setVisibility(View.VISIBLE);
             holder.downArrow.setVisibility(View.GONE);
+            if(context.getClass().getName().equals("com.example.booklibrary.AllBooks")){
+                holder.btnDelete.setVisibility(View.GONE);
+            }
+            else if(context.getClass().getName().equals("com.example.booklibrary.AlreadyRead")){
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(Utils.getInstance().removeFromSection(Utils.getAlreadyRead(),books.get(position))){
+                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+
+            else if(context.getClass().getName().equals("com.example.booklibrary.CurrentlyReading")){
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(Utils.getInstance().removeFromSection(Utils.getCurrentlyReading(),books.get(position))){
+                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+            else if(context.getClass().getName().equals("com.example.booklibrary.Favourites")){
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(Utils.getInstance().removeFromSection(Utils.getFavourites(),books.get(position))){
+                            Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+
         }
         else {
             TransitionManager.beginDelayedTransition(holder.cardView);
             holder.expandedLayout.setVisibility(View.GONE);
             holder.downArrow.setVisibility(View.VISIBLE);
+
+
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -80,15 +121,18 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private ImageView imageView;
-        private TextView textView,authorText,descText;
+        private TextView textView,authorText,descText,btnDelete;
         private ImageView upArrow,downArrow;
         private RelativeLayout mainLayout,expandedLayout;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardId);
             imageView = itemView.findViewById(R.id.cardImgId);
             textView = itemView.findViewById(R.id.cardTitleId);
+
+            btnDelete = itemView.findViewById(R.id.btnDelete);
 
             upArrow = itemView.findViewById(R.id.btnUpId);
             downArrow = itemView.findViewById(R.id.btnDownId);

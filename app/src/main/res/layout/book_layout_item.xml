@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/mainCardId"
             android:layout_marginTop="15dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/authorSpanId"
@@ -77,14 +77,29 @@
                 android:text="Short Description"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
-
             <ImageView
                 android:id="@+id/btnUpId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/descId"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_up_arrow" />
+                android:src="@drawable/ic_up_arrow"
+                android:layout_below="@id/descId"/>
+            <TextView
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/descId"
+                android:textSize="20sp"
+                android:layout_toLeftOf="@+id/btnUpId"
+                android:text="delete"
+                android:textStyle="italic"
+                android:fontFamily="@font/almendra_bold"
+                android:textColor="#e10"
+                android:visibility="visible"/>
+
+
+
+
 
         </RelativeLayout>
 

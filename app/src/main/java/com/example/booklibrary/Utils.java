@@ -85,5 +85,8 @@ public class Utils {
     public boolean addToSection(ArrayList<Book> section,Book book){
         return section.add(book);
     }
+    public boolean removeFromSection(ArrayList<Book> section,Book book){
+        return section.remove(book);
+    }
 
 }
