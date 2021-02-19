@@ -14,34 +14,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        allBooksBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,AllBooks.class);
-                startActivity(intent);
-            }
+        allBooksBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this,AllBooks.class);
+            startActivity(intent);
         });
-        Utils.getInstance();
-        currentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CurrentlyReading.class);
-                startActivity(intent);
-            }
+        Utils.getInstance(this);
+        currentBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this,CurrentlyReading.class);
+            startActivity(intent);
         });
-        alreadyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,AlreadyRead.class);
-                startActivity(intent);
-            }
+        alreadyBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this,AlreadyRead.class);
+            startActivity(intent);
         });
-        favouriteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Favourites.class);
-                startActivity(intent);
-            }
+        favouriteBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this,Favourites.class);
+            startActivity(intent);
         });
     }
 

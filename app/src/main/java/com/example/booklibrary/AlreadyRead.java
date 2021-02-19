@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import static com.example.booklibrary.Utils.ALREADY_READ;
+
 public class AlreadyRead extends AppCompatActivity {
     private RecyclerView alreadyRead;
 
@@ -18,7 +20,7 @@ public class AlreadyRead extends AppCompatActivity {
         BookRecyclerViewAdapter adapter = new BookRecyclerViewAdapter(this);
         alreadyRead.setAdapter(adapter);
         alreadyRead.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setBooks(Utils.getAlreadyRead());
+        adapter.setBooks(Utils.getInstance(this).getSectionBooks(ALREADY_READ));
 
     }
     @Override

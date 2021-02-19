@@ -16,6 +16,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import static com.example.booklibrary.BookRecyclerViewAdapter.BOOK_ID_KEY;
+import static com.example.booklibrary.Utils.ALREADY_READ;
+import static com.example.booklibrary.Utils.CURRENTLY_READING;
+import static com.example.booklibrary.Utils.FAVOURITES;
 
 public class BookActivity extends AppCompatActivity {
     private Button currentlyBtn, alreadyReadBtn, favouritesBtn;
@@ -32,12 +35,12 @@ public class BookActivity extends AppCompatActivity {
         intent = getIntent();
         if (intent != null) {
             int bookId = intent.getIntExtra(BOOK_ID_KEY, -1);
-            Book incomingBook = Utils.getInstance().getBookById(bookId);
+            Book incomingBook = Utils.getInstance(this).getBookById(bookId);
             if (incomingBook != null) {
                 setData(incomingBook);
-                handleCurrentlyReading(incomingBook,Utils.getCurrentlyReading(),currentlyBtn,"currently reading section",CurrentlyReading.class);
-                handleCurrentlyReading(incomingBook,Utils.getAlreadyRead(),alreadyReadBtn,"already read section",AlreadyRead.class);
-                handleCurrentlyReading(incomingBook,Utils.getFavourites(),favouritesBtn,"favourites section",Favourites.class);
+                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(CURRENTLY_READING),currentlyBtn,"currently reading section",CurrentlyReading.class);
+                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(ALREADY_READ),alreadyReadBtn,"already read section",AlreadyRead.class);
+                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(FAVOURITES),favouritesBtn,"favourites section",Favourites.class);
             }
         }
 
@@ -58,7 +61,7 @@ public class BookActivity extends AppCompatActivity {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance().addToSection(list,incomingBook)){
+                        if(Utils.getInstance(BookActivity.this).addToSection(CURRENTLY_READING,incomingBook)){
                             Toast.makeText(BookActivity.this, "Book added successfully to "+str, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(BookActivity.this, (Class<?>) activity);
                             startActivity(intent);
