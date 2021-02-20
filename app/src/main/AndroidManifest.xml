@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BookLibrary">
         <activity android:name=".Favourites" android:label="Favourites Bokks" />
         <activity android:name=".AlreadyRead" android:label="Already Read Books" />
-        <activity android:name=".CurrentlyReading" android:label="Cuurently Reading Bokks" />
+        <activity android:name=".CurrentlyReading" android:label="Cuurently Reading Books" />
         <activity android:name=".BookActivity" />
         <activity android:name=".AllBooks" android:label="All The Books"/>
         <activity android:name=".MainActivity">

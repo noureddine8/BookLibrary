@@ -38,15 +38,15 @@ public class BookActivity extends AppCompatActivity {
             Book incomingBook = Utils.getInstance(this).getBookById(bookId);
             if (incomingBook != null) {
                 setData(incomingBook);
-                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(CURRENTLY_READING),currentlyBtn,"currently reading section",CurrentlyReading.class);
-                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(ALREADY_READ),alreadyReadBtn,"already read section",AlreadyRead.class);
-                handleCurrentlyReading(incomingBook,Utils.getInstance(this).getSectionBooks(FAVOURITES),favouritesBtn,"favourites section",Favourites.class);
+                handleButtons(incomingBook,Utils.getInstance(this).getSectionBooks(CURRENTLY_READING),currentlyBtn,CURRENTLY_READING,CurrentlyReading.class);
+                handleButtons(incomingBook,Utils.getInstance(this).getSectionBooks(ALREADY_READ),alreadyReadBtn,ALREADY_READ,AlreadyRead.class);
+                handleButtons(incomingBook,Utils.getInstance(this).getSectionBooks(FAVOURITES),favouritesBtn,FAVOURITES,Favourites.class);
             }
         }
 
     }
 
-    private void handleCurrentlyReading(Book incomingBook, ArrayList<Book> list, Button btn, String str, Object activity) {
+    private void handleButtons(Book incomingBook, ArrayList<Book> list, Button btn, String str, Object activity) {
         ArrayList<Book> currentlyReading = list;
         boolean existInCurrently = false;
         for(Book b:currentlyReading) {
@@ -61,7 +61,7 @@ public class BookActivity extends AppCompatActivity {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(Utils.getInstance(BookActivity.this).addToSection(CURRENTLY_READING,incomingBook)){
+                        if(Utils.getInstance(BookActivity.this).addToSection(str,incomingBook)){
                             Toast.makeText(BookActivity.this, "Book added successfully to "+str, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(BookActivity.this, (Class<?>) activity);
                             startActivity(intent);

@@ -113,10 +113,10 @@ public class Utils {
         Gson gson = new Gson();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         ArrayList<Book> books = getSectionBooks(key);
-        if(book !=null){
-            if(books.add(book)){
+        if (book != null) {
+            if (books.add(book)) {
                 editor.remove(key);
-                editor.putString(key,gson.toJson(books));
+                editor.putString(key, gson.toJson(books));
                 editor.commit();
                 return true;
             }
@@ -129,12 +129,12 @@ public class Utils {
         Gson gson = new Gson();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         ArrayList<Book> books = getSectionBooks(key);
-        if(book !=null){
-            for(Book b:books){
-                if(book.getId() == b.getId()){
-                    if(books.remove(b)){
+        if (book != null) {
+            for (Book b : books) {
+                if (book.getId() == b.getId()) {
+                    if (books.remove(b)) {
                         editor.remove(key);
-                        editor.putString(key,gson.toJson(books));
+                        editor.putString(key, gson.toJson(books));
                         editor.commit();
                         return true;
                     }
