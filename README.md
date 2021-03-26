@@ -1,2 +1,2 @@
 # BookLibrary
-A simple Android books library application
+An  Android library management application
